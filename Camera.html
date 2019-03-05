@@ -29,21 +29,19 @@
     var video = document.getElementById('video'),
         canvas = document.getElementById('canvas'),
         snap = document.getElementById('tack'),
-        img = document.getElementById('img'),
-        vendorUrl = window.URL || window.webkitURL;
+        img = document.getElementById('img');
 
     //媒体对象
     navigator.getMedia = navigator.getUserMedia ||
         navagator.webkitGetUserMedia ||
         navigator.mozGetUserMedia ||
         navigator.msGetUserMedia;
+        
     navigator.getMedia({
         video: true, //使用摄像头对象
         audio: false //不适用音频
     }, function(strem) {
-        console.log(strem);
-        video.src =  vendorUrl.createObjectURL(strem);
-        console.log(video.src);
+        video.srcObject =  strem;
         video.play();
     }, function(error) {
         //error.code
